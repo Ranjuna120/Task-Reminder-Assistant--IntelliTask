@@ -1,0 +1,236 @@
+/* General container styling */
+.add-task-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Heading styling */
+.add-task-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Toast message styling */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.toast.error {
+  background-color: #f44336;
+}
+
+/* Loading spinner and message */
+.loading {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #666;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+/* Error message styling */
+.error {
+  text-align: center;
+  color: #d32f2f;
+  font-style: italic;
+  margin: 10px 0;
+}
+
+/* Form styling with grid layout */
+.task-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns for larger screens */
+  gap: 15px;
+}
+
+/* Label styling */
+label {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Form group for inputs and textareas */
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  grid-column: 1 / -1; /* Span full width */
+}
+
+.form-group input,
+.form-group textarea {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #42a5f5;
+  box-shadow: 0 0 5px rgba(66, 165, 245, 0.5);
+  outline: none;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Voice button styling */
+.form-group button {
+  background-color: #42a5f5;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-group button:hover {
+  background-color: #1e88e5;
+  transform: scale(1.1);
+}
+
+/* Date and time group */
+.datetime-group {
+  display: flex;
+  gap: 10px;
+  grid-column: 1 / -1; /* Span full width */
+}
+
+.datetime-group input[type="date"],
+.datetime-group input[type="time"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.datetime-group input:focus {
+  border-color: #42a5f5;
+}
+
+/* Select dropdown styling */
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  border-color: #42a5f5;
+  outline: none;
+}
+
+/* Submit button styling */
+button[type="submit"] {
+  grid-column: 1 / -1; /* Span full width */
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+}
+
+button[type="submit"]:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Animation for toast and spinner */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .add-task-container {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+
+  .task-form {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .form-group,
+  .datetime-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group button {
+    align-self: flex-start;
+  }
+
+  button[type="submit"] {
+    font-size: 1rem;
+  }
+}
