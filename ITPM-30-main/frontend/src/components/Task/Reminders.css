@@ -1,0 +1,260 @@
+/* Container */
+.reminders-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%); /* Vibrant gradient */
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-family: "Poppins", sans-serif;
+  min-height: 80vh;
+  backdrop-filter: blur(5px);
+}
+
+
+/* Title */
+h1 {
+  font-size: 2.2rem;
+  color: #0277bd;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.navbar button {
+  padding: 8px 16px;
+  background: #0288d1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar button:hover:not(:disabled) {
+  background: #01579b;
+  transform: translateY(-2px);
+}
+
+.navbar button:disabled {
+  background: #0288d1;
+  cursor: not-allowed;
+}
+/* Logout Button */
+.navbar .logout-btn {
+  background: linear-gradient(45deg, #ef4444, #dc2626); /* Matches delete button from TaskList.css */
+}
+
+.navbar .logout-btn:hover {
+  background: linear-gradient(45deg, #dc2626, #b91c1c); /* Matches delete button hover from TaskList.css */
+  transform: translateY(-2px);
+}
+
+/* PDF Button */
+.pdf-button {
+  display: block;
+  margin: 20px auto 20px;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #f59e0b, #d97706);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pdf-button:hover {
+  background: linear-gradient(45deg, #d97706, #b45309);
+  transform: translateY(-2px);
+}
+
+/* Loader */
+.loader {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #0277bd;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Error Message */
+.error-msg {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #d32f2f;
+  background: #ffebee;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.error-msg small {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* No Reminders */
+.no-reminders {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #666;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Reminders List */
+.reminders-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Reminder Item */
+.reminder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  margin: 15px 0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.reminder-item:hover {
+  transform: translateY(-3px);
+}
+
+.reminder-details {
+  flex: 1;
+  font-size: 1rem;
+  color: #333;
+}
+
+.reminder-details strong {
+  color: #01579b;
+}
+
+.edit-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 200px;
+  margin-top: 5px;
+}
+
+.edit-input:focus {
+  border-color: #0277bd;
+  outline: none;
+}
+
+.reminder-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.reminder-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background: #ffca28;
+  color: #333;
+}
+
+.edit-btn:hover {
+  background: #ffb300;
+}
+
+.save-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #388e3c;
+}
+
+.cancel-btn {
+  background: #f57c00;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: #ef6c00;
+}
+
+.delete-btn {
+  background: #d32f2f;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #b71c1c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .reminders-container {
+    margin: 20px 10px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .reminder-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .reminder-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .navbar button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .pdf-button {
+    width: 100%;
+    max-width: 200px;
+  }
+}
