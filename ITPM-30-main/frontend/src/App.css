@@ -1,0 +1,459 @@
+/* Reset Body Styles */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f4f7fc; /* Light background for better contrast */
+}
+
+/* General App Container */
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%); /* Vibrant purple to cyan gradient */
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Splash Screen */
+.splash-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent); /* Subtle glow */
+}
+
+.splash-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1505236850776-63a179e84e89?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'); /* Clock-themed background */
+  background-size: cover;
+  background-position: center;
+  animation: bgZoomIn 5s ease-in-out 1 forwards;
+  z-index: -2;
+  pointer-events: none;
+  filter: brightness(0.9);
+}
+
+.splash-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+  background-size: cover;
+  background-position: top;
+  transform: scale(1.5);
+  animation: bgZoomOut 5s ease-in-out 1 forwards;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Floating Clouds */
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.7), 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: -1;
+  animation: floatClouds 15s linear infinite;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.cloud:hover {
+  opacity: 1;
+}
+
+.cloud-1 {
+  width: 120px;
+  height: 70px;
+  top: 15%;
+  left: -150px;
+  animation-duration: 10s;
+}
+
+.cloud-2 {
+  width: 90px;
+  height: 55px;
+  top: 45%;
+  left: -150px;
+  animation-duration: 12s;
+  animation-delay: 1.5s;
+}
+
+.cloud-3 {
+  width: 140px;
+  height: 80px;
+  top: 65%;
+  left: -150px;
+  animation-duration: 14s;
+  animation-delay: 0.5s;
+}
+
+@keyframes floatClouds {
+  0% {
+    transform: translateX(-150px) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateX(50vw) scale(1.05);
+  }
+  100% {
+    transform: translateX(100vw) scale(1);
+    opacity: 0.6;
+  }
+}
+
+/* Splash Content */
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Clock Animation */
+.clock {
+  z-index: 1;
+}
+
+.clock-hand {
+  transform-origin: 50% 50%;
+}
+
+.hour-hand {
+  animation: tickHour 14400s linear infinite;
+}
+
+.minute-hand {
+  animation: tickMinute 240s linear infinite;
+}
+
+.second-hand {
+  animation: tickSecond 4s linear infinite;
+}
+
+@keyframes tickHour {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tickMinute {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tickSecond {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Title Animation */
+.title-svg {
+  z-index: 1;
+}
+
+.title-text {
+  font-size: 48px;
+  font-weight: 800;
+  fill: transparent;
+  stroke: #fff;
+  stroke-width: 1;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: textAnimation 3.5s ease-in-out 1 forwards;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes textAnimation {
+  0% {
+    stroke-dashoffset: 300;
+    fill: transparent;
+    transform: scale(0.95);
+  }
+  60% {
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: #fff;
+    transform: scale(1);
+  }
+}
+
+.splash-subtitle {
+  font-size: 1.4rem;
+  color: #e0e0e0;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 2s ease-in;
+  letter-spacing: 1px;
+}
+
+/* Background Animations */
+@keyframes bgZoomIn {
+  from {
+    transform: scale(1.3);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes bgZoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.8);
+  }
+}
+
+/* Header */
+.app-header {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 25px 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.app-header h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  color: #fff;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1.5px;
+}
+
+/* Main Content */
+.app-main {
+  padding: 50px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  margin: 0 20px;
+}
+
+/* Task List Page */
+.task-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 25px 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  backdrop-filter: blur(5px);
+}
+
+.nav-btn {
+  padding: 14px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.nav-btn:hover::before {
+  left: 0;
+}
+
+.nav-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Colors */
+.profile-btn {
+  background: linear-gradient(45deg, #10b981, #059669); /* Emerald green for Profile */
+}
+
+.profile-btn:hover {
+  background: linear-gradient(45deg, #059669, #047857);
+}
+
+.reminders-btn {
+  background: linear-gradient(45deg, #3b82f6, #2563eb); /* Blue for Reminders */
+}
+
+.reminders-btn:hover {
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+}
+
+.feedback-btn {
+  background: linear-gradient(45deg, #f59e0b, #d97706); /* Amber for Feedback */
+}
+
+.feedback-btn:hover {
+  background: linear-gradient(45deg, #d97706, #b45309);
+}
+
+.favourites-btn {
+  background: linear-gradient(45deg, #ec4899, #db2777); /* Pink for Favourites */
+}
+
+.favourites-btn:hover {
+  background: linear-gradient(45deg, #db2777, #be185d);
+}
+
+.logout-btn {
+  background: linear-gradient(45deg, #ef4444, #dc2626); /* Matches delete button from TaskList.css */
+}
+
+.logout-btn:hover {
+  background: linear-gradient(45deg, #dc2626, #b91c1c); /* Matches delete button hover from TaskList.css */
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .title-text {
+    font-size: 36px;
+  }
+
+  .clock {
+    width: 150px;
+    height: 150px;
+  }
+
+  .cloud-1 {
+    width: 90px;
+    height: 55px;
+  }
+
+  .cloud-2 {
+    width: 70px;
+    height: 45px;
+  }
+
+  .cloud-3 {
+    width: 110px;
+    height: 65px;
+  }
+
+  .app-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .nav-btn {
+    width: 100%;
+    max-width: 220px;
+    margin: 5px auto;
+    padding: 12px;
+  }
+
+  .app-main {
+    padding: 30px 15px;
+  }
+
+  .task-list-page {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-text {
+    font-size: 28px;
+  }
+
+  .clock {
+    width: 120px;
+    height: 120px;
+  }
+
+  .cloud-1 {
+    width: 70px;
+    height: 40px;
+  }
+
+  .cloud-2 {
+    width: 60px;
+    height: 35px;
+  }
+
+  .cloud-3 {
+    width: 90px;
+    height: 50px;
+  }
+
+  .splash-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .app-main {
+    padding: 20px 10px;
+  }
+
+  .task-list-page {
+    margin: 0 10px;
+  }
+}
