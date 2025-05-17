@@ -1,0 +1,121 @@
+/* Container */
+.delete-task-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+/* Title */
+h1 {
+  font-size: 2rem;
+  color: #d32f2f;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group label {
+  font-size: 1.1rem;
+  color: #333;
+  text-align: left;
+}
+
+/* Input */
+.task-id-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.task-id-input:focus {
+  border-color: #d32f2f;
+  outline: none;
+}
+
+.task-id-input:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+
+/* Delete Button */
+.delete-btn {
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #d32f2f, #b71c1c);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: linear-gradient(45deg, #b71c1c, #8e0000);
+  transform: translateY(-2px);
+}
+
+.delete-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Loader */
+.loader {
+  font-size: 1.2rem;
+  color: #d32f2f;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Error Message */
+.error-msg {
+  font-size: 1.1rem;
+  color: #d32f2f;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.error-msg small {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .delete-task-container {
+    margin: 20px 10px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .task-id-input,
+  .delete-btn {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
