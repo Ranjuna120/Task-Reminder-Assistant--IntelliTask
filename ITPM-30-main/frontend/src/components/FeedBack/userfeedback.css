@@ -1,0 +1,562 @@
+/* Container */
+.feedback-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%); /* Matches TaskList */
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-family: "Poppins", sans-serif;
+  backdrop-filter: blur(5px);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center; /* Centered like TaskList */
+  gap: 20px; /* Matches TaskList */
+  padding: 25px 0; /* Matches TaskList */
+  background: rgba(255, 255, 255, 0.2); /* Matches TaskList */
+  border-radius: 12px;
+  margin-bottom: 40px; /* Matches TaskList */
+  flex-wrap: wrap;
+  backdrop-filter: blur(5px);
+}
+
+/* General Navbar Button */
+.navbar button {
+  padding: 14px 24px; /* Matches TaskList */
+  font-size: 1.2rem; /* Matches TaskList */
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.navbar button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.navbar button:hover::before {
+  left: 0;
+}
+
+.navbar button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Colors */
+.profile-btn {
+  background: linear-gradient(45deg, #10b981, #059669); /* Matches App.css */
+}
+
+.profile-btn:hover {
+  background: linear-gradient(45deg, #059669, #047857);
+}
+
+.reminders-btn {
+  background: linear-gradient(45deg, #3b82f6, #2563eb); /* Matches App.css */
+}
+
+.reminders-btn:hover {
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+}
+
+.feedback-btn {
+  background: linear-gradient(45deg, #f59e0b, #d97706); /* Matches App.css */
+}
+
+.feedback-btn:hover {
+  background: linear-gradient(45deg, #d97706, #b45309);
+}
+
+.favourites-btn {
+  background: linear-gradient(45deg, #ec4899, #db2777); /* Matches App.css */
+}
+
+.favourites-btn:hover {
+  background: linear-gradient(45deg, #db2777, #be185d);
+}
+
+/* Logout Button */
+.logout-btn {
+  background: linear-gradient(45deg, #ef4444, #dc2626); /* Matches App.css */
+}
+
+.logout-btn:hover {
+  background: linear-gradient(45deg, #dc2626, #b91c1c);
+}
+
+/* Feedback Header */
+.feedback-header {
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.2); /* Glassmorphism */
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  text-align: center; /* Center the header */
+  margin-bottom: 40px;
+}
+
+/* Feedback Header Title */
+.feedback-header h1 {
+  font-size: 2.8rem; /* Larger for prominence */
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  margin-bottom: 60px;
+}
+
+/* Search Container */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap; /* Keep search input and button in one line */
+  margin-bottom: 30px;
+  justify-content: space-between; /* Search left, button right */
+}
+
+/* Search Input */
+.search-input {
+  padding: 12px;
+  width: 250px; /* Slightly larger for usability */
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  background: #fff;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+  border-color: #3b82f6; /* Blue, matches reminders */
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  outline: none;
+}
+
+/* Generate Button */
+.generate-btn {
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #f59e0b, #d97706); /* Blue gradient */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.generate-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.generate-btn:hover::before {
+  left: 0;
+}
+
+.generate-btn:hover {
+  background: linear-gradient(45deg, #d97706, #b45309);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Feedback Form */
+.feedback-form {
+  background: rgba(255, 255, 255, 0.95); /* Glassmorphism */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  backdrop-filter: blur(5px);
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.2); /* Subtle glassmorphism */
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Form Inputs */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  background: #fff;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.readonly {
+  background: rgba(255, 255, 255, 0.5); /* Softer disabled state */
+  color: #333;
+  cursor: not-allowed;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #3b82f6; /* Blue, matches reminders */
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  outline: none;
+}
+
+/* Submit Button */
+.submit-btn {
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #10b981, #059669); /* Green gradient */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.submit-btn:hover::before {
+  left: 0;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(45deg, #059669, #047857);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Feedback List */
+.feedback-list {
+  display: grid;
+  gap: 25px;
+}
+
+/* Feedback Card */
+.feedback-card {
+  background: rgba(255, 255, 255, 0.95); /* Glassmorphism */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.feedback-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Feedback Content */
+.feedback-content p {
+  margin: 8px 0;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.feedback-content strong {
+  color: #01579b; /* Darker blue, matches task-card h3 */
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Feedback Actions */
+.feedback-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Action Buttons */
+.edit-btn,
+.delete-btn {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-btn::before,
+.delete-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.edit-btn:hover::before,
+.delete-btn:hover::before {
+  left: 0;
+}
+
+.edit-btn {
+  background: linear-gradient(45deg, #f59e0b, #d97706); /* Amber, matches medium priority */
+}
+
+.edit-btn:hover {
+  background: linear-gradient(45deg, #d97706, #b45309);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.delete-btn {
+  background: linear-gradient(45deg, #ef4444, #dc2626); /* Red gradient */
+}
+
+.delete-btn:hover {
+  background: linear-gradient(45deg, #dc2626, #b91c1c);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Error Message */
+.error-msg {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #fff;
+  background: rgba(239, 68, 68, 0.9); /* Red, matches delete */
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+/* No Feedback Message */
+.no-feedback {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2); /* Glassmorphism */
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+}
+
+/* Skeleton Styles */
+.skeleton-card {
+  background: rgba(255, 255, 255, 0.95); /* Matches feedback-card */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.skeleton-text {
+  width: 80%;
+  height: 15px;
+  background: #d1d5db;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-button {
+  width: 100px;
+  height: 40px;
+  background: #d1d5db;
+  border-radius: 10px;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background: #d1d5db; }
+  50% { background: #e5e7eb; }
+  100% { background: #d1d5db; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feedback-container {
+    margin: 20px 10px;
+    padding: 20px;
+  }
+
+  .feedback-header {
+    padding: 10px;
+  }
+
+  .feedback-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .navbar button {
+    width: 100%;
+    max-width: 220px;
+    margin: 5px auto;
+    padding: 12px;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-input,
+  .generate-btn {
+    width: 100%;
+    max-width: 300px;
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .feedback-form {
+    padding: 15px;
+  }
+
+  .form-group {
+    padding: 10px;
+  }
+
+  .form-group label {
+    font-size: 1.2rem;
+  }
+
+  .form-input,
+  .form-textarea,
+  .submit-btn {
+    font-size: 1rem;
+  }
+
+  .feedback-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .feedback-actions {
+    margin-top: 15px;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-container {
+    margin: 10px 5px;
+    padding: 15px;
+  }
+
+  .navbar button {
+    font-size: 1rem;
+    max-width: 200px;
+  }
+
+  .feedback-header h1 {
+    font-size: 2rem;
+  }
+
+  .feedback-card {
+    padding: 10px;
+  }
+
+  .feedback-content p {
+    font-size: 0.95rem;
+  }
+
+  .error-msg,
+  .no-feedback {
+    font-size: 1.2rem;
+  }
+}
