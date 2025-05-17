@@ -1,0 +1,228 @@
+/* Login Container */
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Login Card */
+.login-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-in-out;
+  backdrop-filter: blur(5px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Title */
+h2 {
+  color: #2c3e50;
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 700;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  line-height: 1.3;
+}
+
+/* Subtitle */
+.subtitle {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  line-height: 1.4;
+}
+
+/* Error Message */
+.error-message {
+  color: #fff;
+  background: rgba(239, 68, 68, 0.9);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Login Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form Group */
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: #fff;
+  color: #333;
+}
+
+input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  outline: none;
+}
+
+input.invalid {
+  border-color: #ef4444;
+}
+
+/* Validation Message */
+.validation-message {
+  color: #ef4444;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Login Button */
+.login-btn {
+  background: linear-gradient(45deg, #3b82f6, #2563eb);
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.login-btn:hover:not(:disabled) {
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.login-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  text-shadow: none;
+}
+
+/* Additional Actions */
+.additional-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Create Account and Admin Buttons */
+.create-account-btn,
+.admin-btn {
+  width: 100%;
+  padding: 12px; /* Match login-btn padding */
+  border: none;
+  border-radius: 10px; /* Match login-btn radius */
+  font-size: 1.2rem; /* Match login-btn font size */
+  font-weight: 600; /* Match login-btn weight */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Match login-btn transition */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Match login-btn shadow */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Match login-btn text shadow */
+  color: #fff; /* Match login-btn text color */
+}
+
+.create-account-btn {
+  background: linear-gradient(45deg, #10b981, #059669); /* Retain green theme */
+}
+
+.create-account-btn:hover {
+  background: linear-gradient(45deg, #059669, #047857);
+  transform: translateY(-2px); /* Match login-btn hover effect */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Match login-btn hover shadow */
+}
+
+.admin-btn {
+  background: linear-gradient(45deg, #ef4444, #dc2626); /* Retain red theme */
+}
+
+.admin-btn:hover:not(:disabled) {
+  background: linear-gradient(45deg, #dc2626, #b91c1c); /* Match login-btn hover gradient style */
+  transform: translateY(-2px); /* Match login-btn hover effect */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Match login-btn hover shadow */
+}
+
+.create-account-btn:disabled,
+.admin-btn:disabled {
+  background: #ccc; /* Match login-btn disabled state */
+  cursor: not-allowed;
+  text-shadow: none; /* Match login-btn disabled state */
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  input,
+  .login-btn,
+  .create-account-btn,
+  .admin-btn {
+    font-size: 1rem;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-card {
+    padding: 15px;
+  }
+
+  input {
+    padding: 10px;
+  }
+}
