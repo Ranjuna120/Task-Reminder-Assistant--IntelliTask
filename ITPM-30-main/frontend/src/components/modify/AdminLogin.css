@@ -1,0 +1,354 @@
+/* AdminLogin.css */
+
+/* Admin Login Container */
+.admin-login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%); /* Smoother gradient with mid-tone */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden; /* Prevent overflow issues with animations */
+}
+
+/* Admin Login Card */
+.admin-login-card {
+  background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for contrast */
+  border-radius: 20px; /* Softer corners */
+  padding: 40px;
+  width: 100%;
+  max-width: 450px; /* Slightly wider for modern spacing */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), inset 0 2px 4px rgba(255, 255, 255, 0.5); /* Neumorphic shadow */
+  animation: slideUpFadeIn 0.6s ease-out; /* Smoother animation */
+  backdrop-filter: blur(10px); /* Stronger blur for glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for depth */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animation for Card */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Title */
+h2 {
+  color: #2c3e50;
+  font-size: 2.5rem; /* Slightly larger for emphasis */
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 800; /* Bolder weight */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  letter-spacing: 0.5px; /* Modern typography touch */
+  background: linear-gradient(90deg, #2c3e50, #34495e); /* Gradient text */
+  -webkit-background-clip: text; /* Safari support */
+  background-clip: text;
+  color: transparent; /* Allow gradient to show */
+}
+
+/* Subtitle */
+.subtitle {
+  color: #ef4444; /* Red, matches admin/logout theme */
+  font-size: 0.9rem; /* Slightly larger for readability */
+  margin-bottom: 25px;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 500;
+  text-shadow: 1px 1px 4px rgba(239, 68, 68, 0.3); /* Subtle shadow */
+}
+
+/* Error Message */
+.error-message {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(220, 38, 38, 0.8)); /* Gradient error */
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1); /* Neumorphic effect */
+  font-size: 1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  animation: shake 0.5s ease-in-out; /* Shake on error */
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Admin Login Form */
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Increased gap for modern spacing */
+}
+
+/* Form Group */
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+  transition: color 0.3s ease; /* Smooth color transition on focus */
+}
+
+.form-group:focus-within label {
+  color: #ef4444; /* Highlight label on focus */
+}
+
+input {
+  width: 100%;
+  padding: 14px; /* Increased padding for modern look */
+  border: 2px solid rgba(221, 221, 221, 0.5); /* Lighter border */
+  border-radius: 12px; /* Softer corners */
+  font-size: 1.1rem;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s; /* Add transform transition */
+  background: rgba(255, 255, 255, 0.8); /* Slight transparency */
+  color: #333;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); /* Inner shadow for depth */
+}
+
+input:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.3); /* Enhanced focus effect */
+  transform: scale(1.02); /* Slight scale on focus */
+  outline: none;
+}
+
+input.invalid {
+  border-color: #ef4444;
+  animation: pulse 0.5s ease-in-out; /* Pulse effect for invalid input */
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.2); }
+}
+
+/* Validation Message */
+.validation-message {
+  color: #ef4444;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: -22px; /* Adjusted for padding */
+  left: 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+  animation: fadeInUp 0.3s ease-out; /* Smooth fade-in */
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Login Button */
+.login-btn {
+  background: linear-gradient(45deg, #ef4444, #dc2626, #b91c1c); /* Multi-stop gradient */
+  color: #fff;
+  padding: 14px; /* Increased padding */
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700; /* Bolder weight */
+  cursor: pointer;
+  transition: all 0.4s ease; /* Smoother transition */
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.2); /* Enhanced shadow */
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(20deg);
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.login-btn:hover:not(:disabled) {
+  background: linear-gradient(45deg, #dc2626, #b91c1c, #991b1b); /* Darker gradient */
+  transform: translateY(-3px) scale(1.05); /* Lift and scale effect */
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.login-btn:hover::before {
+  top: 0;
+  left: 0;
+  transform: rotate(0deg);
+}
+
+.login-btn:disabled {
+  background: linear-gradient(45deg, #ccc, #bbb);
+  cursor: not-allowed;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* Admin Login Button (Matching Login Button Style) */
+.admin-login-btn {
+  background: linear-gradient(45deg, #ef4444, #dc2626, #b91c1c); /* Same gradient as login-btn */
+  color: #fff;
+  padding: 14px; /* Same padding as login-btn */
+  border: none;
+  border-radius: 12px; /* Same radius as login-btn */
+  font-size: 1.2rem; /* Same font size as login-btn */
+  font-weight: 700; /* Same weight as login-btn */
+  cursor: pointer;
+  transition: all 0.4s ease; /* Same transition as login-btn */
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.2); /* Same shadow as login-btn */
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-login-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(20deg);
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.admin-login-btn:hover:not(:disabled) {
+  background: linear-gradient(45deg, #dc2626, #b91c1c, #991b1b); /* Same hover gradient as login-btn */
+  transform: translateY(-3px) scale(1.05); /* Same hover effect as login-btn */
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.3); /* Same hover shadow as login-btn */
+}
+
+.admin-login-btn:hover::before {
+  top: 0;
+  left: 0;
+  transform: rotate(0deg);
+}
+
+.admin-login-btn:disabled {
+  background: linear-gradient(45deg, #ccc, #bbb); /* Same disabled state as login-btn */
+  cursor: not-allowed;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* Additional Actions */
+.additional-actions {
+  margin-top: 25px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Space between elements */
+}
+
+/* Regular User Text */
+.additional-actions p {
+  color: #3498db; /* Updated blue for reminders theme */
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* User Login Link */
+.user-login-link {
+  color: #10b981; /* Green, matches user/profile theme */
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease; /* Smooth transition for all properties */
+  position: relative;
+}
+
+.user-login-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #10b981;
+  transition: width 0.3s ease;
+}
+
+.user-login-link:hover {
+  color: #059669;
+  transform: translateY(-1px); /* Slight lift */
+}
+
+.user-login-link:hover::after {
+  width: 100%; /* Underline effect on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .admin-login-card {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+  }
+
+  input,
+  .login-btn,
+  .admin-login-btn {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+  }
+
+  .additional-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .additional-actions p,
+  .user-login-link {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .admin-login-card {
+    padding: 15px;
+  }
+
+  input {
+    padding: 10px;
+  }
+
+  .login-btn,
+  .admin-login-btn {
+    padding: 12px;
+  }
+}
