@@ -41,7 +41,8 @@ const Category = () => {
       setLoading(false);
     }
   };
-
+  
+//api call
   const fetchUsedCategories = async () => {
     setLoading(true);
     try {
@@ -237,7 +238,7 @@ const Category = () => {
           aria-label="Search categories"
         />
         <button onClick={generatePDF} className="pdf-button" disabled={loading} aria-label="Generate PDF">
-         📄 Generate Report
+         📄 Generate Report 
         </button>
       </div>
 
