@@ -136,7 +136,8 @@ const AppHeader = () => {
   
   return (
     <header className="app-header">
-      <h1>IntelliTask: Task & Reminder Assistant</h1>
+      <div className="header-left"></div>
+      <h1 className="header-title">IntelliTask: Task & Reminder Assistant</h1>
       <div className="header-controls">
         <React.Suspense fallback={<div>Loading...</div>}>
           <NotificationCenter />
