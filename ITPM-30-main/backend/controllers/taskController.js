@@ -1,37 +1,43 @@
 const connection = require('../db');
 const schedule = require('node-schedule');
 
-const sendStartNotification = async (userId, taskId) => {
+const sendStartNotification = async (userId, taskId, wsManager) => {
   try {
     const [task] = await connection.promise().query(
       'SELECT * FROM tasks WHERE id = ?', [taskId]
     );
-    if (task.length) {
+    if (task.length && wsManager) {
       console.log(`START NOTIFICATION: User ${userId}, Task "${task[0].title}" has started!`);
+      
+      // Send WebSocket notification
+      wsManager.sendTaskUpdate(userId, task[0], 'started');
     }
   } catch (error) {
     console.error("Notification error:", error);
   }
 };
 
-const sendNotification = async (userId, taskId) => {
+const sendNotification = async (userId, taskId, wsManager) => {
   try {
     const [task] = await connection.promise().query(
       'SELECT * FROM tasks WHERE id = ?', [taskId]
     );
-    if (task.length) {
+    if (task.length && wsManager) {
       console.log(`REMINDER: User ${userId}, Task: ${task[0].title}, Due: ${new Date(task[0].due_date).toLocaleString()}`);
+      
+      // Send WebSocket reminder notification
+      wsManager.sendReminder(userId, task[0]);
     }
   } catch (error) {
     console.error("Notification error:", error);
   }
 };
 
-const scheduleNotification = (userId, taskId, time, type = "reminder") => {
+const scheduleNotification = (userId, taskId, time, type = "reminder", wsManager) => {
   const date = new Date(time);
   if (date > new Date()) {
     schedule.scheduleJob(date, () =>
-      type === "start" ? sendStartNotification(userId, taskId) : sendNotification(userId, taskId)
+      type === "start" ? sendStartNotification(userId, taskId, wsManager) : sendNotification(userId, taskId, wsManager)
     );
   }
 };
@@ -77,8 +83,26 @@ exports.createTask = async (req, res) => {
       [user_id, category_id, title, description, due_date, start_date, priority, status || 'pending', mood || 'Energetic']
     );
 
-    if (start_date) scheduleNotification(user_id, result.insertId, start_date, "start");
-    if (due_date) scheduleNotification(user_id, result.insertId, due_date);
+    // Get WebSocket manager from app
+    const wsManager = req.app.get('wsManager');
+    
+    // Schedule notifications with WebSocket support
+    if (start_date) scheduleNotification(user_id, result.insertId, start_date, "start", wsManager);
+    if (due_date) scheduleNotification(user_id, result.insertId, due_date, "reminder", wsManager);
+
+    // Send immediate task creation notification
+    if (wsManager) {
+      const newTask = {
+        id: result.insertId,
+        title,
+        description,
+        due_date,
+        start_date,
+        priority,
+        status: status || 'pending'
+      };
+      wsManager.sendTaskUpdate(user_id, newTask, 'created');
+    }
 
     res.status(201).json({ message: 'Task created', taskId: result.insertId });
   } catch (error) {
@@ -126,7 +150,18 @@ exports.updateTaskStatus = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
   try {
+    // Get task info before update for notification
+    const [taskResult] = await connection.promise().query('SELECT * FROM tasks WHERE id = ?', [id]);
+    
     await connection.promise().query('UPDATE tasks SET status = ? WHERE id = ?', [status, id]);
+    
+    // Send WebSocket notification
+    const wsManager = req.app.get('wsManager');
+    if (wsManager && taskResult.length > 0) {
+      const updatedTask = { ...taskResult[0], status };
+      wsManager.sendTaskUpdate(taskResult[0].user_id, updatedTask, 'status_updated');
+    }
+    
     res.status(200).json({ message: 'Status updated' });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -137,10 +172,24 @@ exports.updateTask = async (req, res) => {
   const { id } = req.params;
   const { title, description, due_date, start_date, priority, category_id, status, mood } = req.body;
   try {
+    // Get task info before update for notification
+    const [taskResult] = await connection.promise().query('SELECT * FROM tasks WHERE id = ?', [id]);
+    
     await connection.promise().query(
       'UPDATE tasks SET title = ?, description = ?, due_date = ?, start_date = ?, priority = ?, category_id = ?, status = ?, mood = ? WHERE id = ?',
       [title, description, due_date, start_date, priority, category_id, status, mood, id]
     );
+    
+    // Send WebSocket notification
+    const wsManager = req.app.get('wsManager');
+    if (wsManager && taskResult.length > 0) {
+      const updatedTask = {
+        ...taskResult[0],
+        title, description, due_date, start_date, priority, category_id, status, mood
+      };
+      wsManager.sendTaskUpdate(taskResult[0].user_id, updatedTask, 'updated');
+    }
+    
     res.status(200).json({ message: 'Task updated' });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -150,7 +199,17 @@ exports.updateTask = async (req, res) => {
 exports.deleteTask = async (req, res) => {
   const { id } = req.params;
   try {
+    // Get task info before delete for notification
+    const [taskResult] = await connection.promise().query('SELECT * FROM tasks WHERE id = ?', [id]);
+    
     await connection.promise().query('DELETE FROM tasks WHERE id = ?', [id]);
+    
+    // Send WebSocket notification
+    const wsManager = req.app.get('wsManager');
+    if (wsManager && taskResult.length > 0) {
+      wsManager.sendTaskUpdate(taskResult[0].user_id, taskResult[0], 'deleted');
+    }
+    
     res.status(200).json({ message: 'Task deleted' });
   } catch (error) {
     res.status(500).json({ error: error.message });
