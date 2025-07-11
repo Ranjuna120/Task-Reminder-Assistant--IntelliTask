@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import TaskList from "./components/Task/TaskList";
 import AddTask from "./components/Task/AddTask";
 import LoginPage from "./components/modify/LoginPage";
@@ -11,6 +12,7 @@ import FeedbackPage from "./components/FeedBack/FeedbackForm";
 import Feedbackmanage from "./components/FeedBack/feedbackmange";
 import Reminders from "./components/Task/reminders";
 import Favourites from "./components/Favourite/FavoriteTasks";
+import Analytics from "./components/Analytics/Analytics";
 import "./App.css";
 
 function App() {
@@ -36,37 +38,40 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="app-container">
-        {isLoading ? (
-          <SplashScreen />
-        ) : (
-          <>
-            <AppHeader />
-            <main className="app-main">
-              <Routes>
-                <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
-                <Route path="/create-account" element={<CreateAccountPage />} />
-                <Route path="/user/:id" element={<UserDetail />} />
-                <Route path="/admin-login" element={<AdminLogin />} />
-                <Route path="/feedback" element={<FeedbackPage />} />
-                <Route path="/favourites" element={<Favourites />} />
-                <Route path="/categories" element={<Category />} />
-                <Route path="/Reminders" element={<Reminders />} />
-                <Route path="/Feedbackmanage" element={<Feedbackmanage />} />
-                <Route
-                  path="/tasks"
-                  element={
-                    isAuthenticated ? <TaskListPage onLogout={handleLogout} /> : <Navigate to="/login" />
-                  }
-                />
-                <Route path="*" element={<Navigate to={isAuthenticated ? "/tasks" : "/login"} />} />
-              </Routes>
-            </main>
-          </>
-        )}
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className="app-container">
+          {isLoading ? (
+            <SplashScreen />
+          ) : (
+            <>
+              <AppHeader />
+              <main className="app-main">
+                <Routes>
+                  <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
+                  <Route path="/create-account" element={<CreateAccountPage />} />
+                  <Route path="/user/:id" element={<UserDetail />} />
+                  <Route path="/admin-login" element={<AdminLogin />} />
+                  <Route path="/feedback" element={<FeedbackPage />} />
+                  <Route path="/favourites" element={<Favourites />} />
+                  <Route path="/categories" element={<Category />} />
+                  <Route path="/Reminders" element={<Reminders />} />
+                  <Route path="/Feedbackmanage" element={<Feedbackmanage />} />
+                  <Route path="/analytics" element={isAuthenticated ? <Analytics /> : <Navigate to="/login" />} />
+                  <Route
+                    path="/tasks"
+                    element={
+                      isAuthenticated ? <TaskListPage onLogout={handleLogout} /> : <Navigate to="/login" />
+                    }
+                  />
+                  <Route path="*" element={<Navigate to={isAuthenticated ? "/tasks" : "/login"} />} />
+                </Routes>
+              </main>
+            </>
+          )}
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
@@ -125,11 +130,22 @@ const SplashScreen = () => (
 );
 
 // Header Component
-const AppHeader = () => (
-  <header className="app-header">
-    <h1>IntelliTask: Task & Reminder Assistant</h1>
-  </header>
-);
+const AppHeader = () => {
+  const ThemeToggle = React.lazy(() => import('./components/ThemeToggle/ThemeToggle'));
+  const NotificationCenter = React.lazy(() => import('./components/NotificationCenter/NotificationCenter'));
+  
+  return (
+    <header className="app-header">
+      <h1>IntelliTask: Task & Reminder Assistant</h1>
+      <div className="header-controls">
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <NotificationCenter />
+          <ThemeToggle />
+        </React.Suspense>
+      </div>
+    </header>
+  );
+};
 
 // TaskListPage Component
 const TaskListPage = ({ onLogout }) => {
@@ -151,19 +167,22 @@ const Navbar = ({ onLogout, userId }) => {
   return (
     <nav className="navbar">
       <button className="nav-btn profile-btn" onClick={() => navigate(`/user/${userId}`)}>
-        User Profile
+        👤 User Profile
+      </button>
+      <button className="nav-btn analytics-btn" onClick={() => navigate("/analytics")}>
+        📊 Analytics
       </button>
       <button className="nav-btn reminders-btn" onClick={() => navigate("/Reminders")}>
-        Reminders
+        ⏰ Reminders
       </button>
       <button className="nav-btn feedback-btn" onClick={() => navigate("/feedback")}>
-        Feedback
+        💬 Feedback
       </button>
       <button className="nav-btn favourites-btn" onClick={() => navigate("/favourites")}>
-        Favourites
+        ⭐ Favourites
       </button>
       <button className="nav-btn logout-btn" onClick={onLogout}>
-        Logout
+        🚪 Logout
       </button>
     </nav>
   );
