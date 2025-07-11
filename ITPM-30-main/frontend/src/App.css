@@ -1,3 +1,34 @@
+/* CSS Custom Properties for Theme Support */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  --border-color: #dee2e6;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --accent-color: #007bff;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+}
+
+body.theme-dark {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3d3d3d;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #808080;
+  --border-color: #404040;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --accent-color: #4f9eff;
+  --success-color: #5cb85c;
+  --warning-color: #f0ad4e;
+  --danger-color: #d9534f;
+}
+
 /* Reset Body Styles */
 body {
   margin: 0;
@@ -232,10 +263,14 @@ body {
 
 /* Header */
 .app-header {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 25px 0;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--shadow);
 }
 
 .app-header h1 {
@@ -244,6 +279,13 @@ body {
   color: #fff;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
   letter-spacing: 1.5px;
+}
+
+/* Header Controls */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Main Content */
@@ -264,51 +306,36 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Navbar */
+/* Enhanced Navbar */
 .navbar {
+  background: var(--bg-secondary);
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 25px 0;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  margin-bottom: 40px;
+  gap: 1rem;
   flex-wrap: wrap;
-  backdrop-filter: blur(5px);
+  justify-content: center;
 }
 
 .nav-btn {
-  padding: 14px 24px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 25px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   cursor: pointer;
+  font-weight: 500;
   transition: all 0.3s ease;
-  color: #fff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.nav-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.2);
-  transition: left 0.3s ease;
-}
-
-.nav-btn:hover::before {
-  left: 0;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .nav-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--shadow);
 }
 
 /* Button Colors */
