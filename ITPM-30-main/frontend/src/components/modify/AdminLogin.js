@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AdminLogin.css'; // Updated import path
+import './AdminLogin.css';
 
 const AdminLogin = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const manualLogin = (username, password) => {
@@ -18,9 +19,13 @@ const AdminLogin = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        setLoading(true);
+
+        // Simulate loading delay for better UX
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         const result = manualLogin(username, password);
 
@@ -33,49 +38,61 @@ const AdminLogin = () => {
         } else {
             setError(result.message);
         }
+
+        setLoading(false);
     };
 
     return (
         <div className="admin-login-container">
             <div className="admin-login-card">
-                <h2>Admin Login</h2>
-                <p className="subtitle" >Access your admin dashboard</p>
-                {error && <p className="error-message">{error}</p>}
+                <h2>Admin Portal</h2>
+                <p className="subtitle">Secure access to your dashboard</p>
+                
+                {error && <div className="error-message">{error}</div>}
+                
                 <form onSubmit={handleSubmit} className="admin-login-form">
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                    <div className="input-group">
                         <input
                             id="username"
-                            type="text"
-                            placeholder="Enter your username"
+                            type="email"
+                            placeholder=" "
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className={username && !username.includes('@') ? "invalid" : ""}
+                            required
                         />
-                        {username && !username.includes('@') && (
-                            <span className="validation-message">Please enter a valid email</span>
-                        )}
+                        <label htmlFor="username">Email Address</label>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
+
+                    <div className="input-group">
                         <input
                             id="password"
                             type="password"
-                            placeholder="Enter your password"
+                            placeholder=" "
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className={password && password.length < 6 ? "invalid" : ""}
+                            required
+                            minLength="6"
                         />
-                        {password && password.length < 6 && (
-                            <span className="validation-message">Password must be at least 6 characters</span>
-                        )}
+                        <label htmlFor="password">Password</label>
                     </div>
-                    <button type="submit" disabled={!username || !password} className="login-btn">
-                        Login
+
+                    <button 
+                        type="submit" 
+                        disabled={!username || !password || loading} 
+                        className="login-btn"
+                    >
+                        {loading && <span className="loading-spinner"></span>}
+                        {loading ? 'Signing In...' : 'Sign In'}
                     </button>
                 </form>
-                <div className="additional-actions">
-                    <p >Regular user? <span onClick={() => navigate("/login")} className="user-login-link"><u>Login</u></span></p>
+
+                <div className="auth-links">
+                    <p>
+                        Regular user? {' '}
+                        <a href="#" onClick={(e) => { e.preventDefault(); navigate("/login"); }}>
+                            Sign in here
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
