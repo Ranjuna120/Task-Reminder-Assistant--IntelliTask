@@ -6,6 +6,7 @@ const LoginPage = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -13,6 +14,9 @@ const LoginPage = ({ onLoginSuccess }) => {
       setError("Please enter both email and password.");
       return;
     }
+
+    setLoading(true);
+    setError("");
 
     try {
       const response = await fetch("http://localhost:5000/auth/api/login", {
@@ -34,6 +38,8 @@ const LoginPage = ({ onLoginSuccess }) => {
     } catch (error) {
       console.error("Error during login:", error);
       setError("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,47 +47,60 @@ const LoginPage = ({ onLoginSuccess }) => {
     <div className="login-container">
       <div className="login-card">
         <h2>Welcome Back</h2>
-        <p className="subtitle">Sign in to continue</p>
-        {error && <p className="error-message">{error}</p>}
+        <p className="subtitle">Sign in to continue your journey</p>
+        
+        {error && <div className="error-message">{error}</div>}
+        
         <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }} className="login-form">
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
+          <div className="input-group">
             <input
               id="email"
               type="email"
-              placeholder="Enter your email"
+              placeholder=" "
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={email && !/^\S+@\S+\.\S+$/.test(email) ? "invalid" : ""}
+              required
             />
-            {email && !/^\S+@\S+\.\S+$/.test(email) && (
-              <span className="validation-message">Please enter a valid email</span>
-            )}
+            <label htmlFor="email">Email Address</label>
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
+
+          <div className="input-group">
             <input
               id="password"
               type="password"
-              placeholder="Enter your password"
+              placeholder=" "
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={password && password.length < 6 ? "invalid" : ""}
+              required
+              minLength="6"
             />
-            {password && password.length < 6 && (
-              <span className="validation-message">Password must be at least 6 characters</span>
-            )}
+            <label htmlFor="password">Password</label>
           </div>
-          <button type="submit" disabled={!email || !password} className="login-btn">
-            Login
+
+          <button 
+            type="submit" 
+            disabled={!email || !password || loading} 
+            className="login-btn"
+          >
+            {loading && <span className="loading-spinner"></span>}
+            {loading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
+
         <div className="additional-actions">
-          <button onClick={() => navigate("/create-account")} className="create-account-btn">
-            Create Account
+          <button 
+            onClick={() => navigate("/create-account")} 
+            className="create-account-btn"
+            disabled={loading}
+          >
+            Create New Account
           </button>
-          <button onClick={() => navigate("/admin-login")} className="admin-btn">
-            Admin Login
+          <button 
+            onClick={() => navigate("/admin-login")} 
+            className="admin-btn"
+            disabled={loading}
+          >
+            Admin Access
           </button>
         </div>
       </div>
