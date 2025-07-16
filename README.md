@@ -281,7 +281,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 📞 Support
 
-- **📧 Email**: support@intellitask.com
+- **📧 Email**: rivithranjuna60@gmail.com
 - **💬 Discord**: [Join our community](https://discord.gg/intellitask)
 - **📖 Documentation**: [docs.intellitask.com](https://docs.intellitask.com)
 - **🐛 Issues**: [GitHub Issues](https://github.com/Ranjuna120/Task-Reminder-Assistant--IntelliTask/issues)
